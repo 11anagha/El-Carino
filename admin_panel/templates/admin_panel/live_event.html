@@ -1,0 +1,35 @@
+{% extends 'admin_panel/base.html' %}
+{% block content %}
+<h2>Watch Live Stream</h2>
+
+<video id="remoteVideo" autoplay playsinline></video>
+
+<script>
+const streamId = "{{ stream_id }}";
+const remoteVideo = document.getElementById("remoteVideo");
+const ws = new WebSocket(`ws://localhost:8000/ws/webrtc/${streamId}/`);
+let peerConnection = new RTCPeerConnection();
+
+peerConnection.ontrack = (event) => {
+    remoteVideo.srcObject = event.streams[0];
+};
+
+peerConnection.onicecandidate = (event) => {
+    if (event.candidate) {
+        ws.send(JSON.stringify({ type: "candidate", candidate: event.candidate }));
+    }
+};
+
+ws.onmessage = async (event) => {
+    const data = JSON.parse(event.data);
+    if (data.type === "offer") {
+        await peerConnection.setRemoteDescription(new RTCSessionDescription(data.offer));
+        const answer = await peerConnection.createAnswer();
+        await peerConnection.setLocalDescription(answer);
+        ws.send(JSON.stringify({ type: "answer", answer }));
+    } else if (data.type === "candidate") {
+        await peerConnection.addIceCandidate(new RTCIceCandidate(data.candidate));
+    }
+};
+</script>
+{% endblock content %}

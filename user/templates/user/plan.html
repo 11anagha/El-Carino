@@ -1,0 +1,25 @@
+{% extends 'user/base.html' %}
+{% block content %}
+{% load static %}
+<div class="booking-form-container">
+    <h2>Book Your Event</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="booking_event_name">Event Name</label>
+        <input type="text" name="event_name" id="booking_event_name" class="booking-input-field" required>
+
+        <label for="booking_date">Booking Date</label>
+        <input type="date" name="booking_date" id="booking_date" class="booking-input-field" required>
+
+        <label for="booking_description">Description</label>
+        <textarea name="description" id="booking_description" class="booking-input-field" rows="4"></textarea>
+
+        <label for="booking_count">Number of People</label>
+        <input type="number" name="count" id="booking_count" class="booking-input-field" required>
+
+        <button type="submit" class="booking-btn">Submit Booking</button>
+    </form>
+</div>
+
+{% endblock %}

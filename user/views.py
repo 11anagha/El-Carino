@@ -1,0 +1,75 @@
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from .forms import BookingForm
+from .models import Booking
+from django.contrib.auth.decorators import login_required
+
+def landing(request):
+    return render(request, 'user/landing.html')
+
+def register(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+
+        if password == confirm_password:
+            if User.objects.filter(username=username).exists():
+                messages.error(request, "Username already taken!")
+            elif User.objects.filter(email=email).exists():
+                messages.error(request, "Email already registered!")
+            else:
+                user = User.objects.create_user(username=username, email=email, password=password)
+                user.save()
+                messages.success(request, "Registration successful! You can now log in.")
+                return redirect('login')
+        else:
+            messages.error(request, "Passwords do not match!")
+
+    return render(request, 'user/register.html')
+
+def user_login(request):  # Renamed from login to user_login
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            auth_login(request, user)  # Use Django's built-in login function
+            messages.success(request, "Logged in successfully!")
+            return redirect('services')  # Redirecting to services page
+        else:
+            messages.error(request, "Invalid username or password.")
+
+    return render(request, 'user/login.html')
+
+def user_logout(request):  # Renamed from logout to user_logout
+    auth_logout(request)  # Use Django's built-in logout function
+    messages.success(request, "Logged out successfully!")
+    return redirect('landing')
+
+def services(request):
+    return render(request, 'user/service.html')
+
+def plan_view(request):
+    return render(request, 'user/plan.html')
+
+@login_required
+def plan_view(request):
+    if request.method == "POST":
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.name = request.user  # Assign logged-in user as the name
+            booking.save()
+            messages.success(request, "Booking request submitted successfully!")
+            return redirect('plan')  # Redirect to the same page or another page after submission
+        else:
+            messages.error(request, "There was an error in your submission.")
+    else:
+        form = BookingForm()
+
+    return render(request, 'user/plan.html', {'form': form})

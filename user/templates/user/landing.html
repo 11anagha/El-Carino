@@ -1,0 +1,56 @@
+{% extends 'user/base.html' %} 
+{% block content %} 
+{% load static %}
+<div class="video-container">
+    <video autoplay loop muted playsinline>
+        <source src="{% static 'assets/images/auth_vedio.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+<div class="hero">
+    <h1>El Carino</h1>
+    <p>Where Every Event Feels Exquisite</p>
+</div>
+<!-- Testimonial Section -->
+<div class="testimonial-section">
+    <h2>TESTIMONIALS</h2>
+    <p>Feedback From Our Customers</p>
+    <div class="testimonial-container">
+        <div class="testimonial">
+            <img src="{% static 'assets/images/myG.webp' %}" alt="User">
+            <p>"El Carino made our ad shoot of myG. The team was professional and creative!"</p>
+            <h3>myG The Digital Expert</h3>
+        </div>
+        <div class="navv-buttons">
+            <button id="prev">&#10094;</button>
+            <button id="next">&#10095;</button>
+        </div>
+    </div>
+    <a href="#" class="view-all">View All</a>
+</div>
+<!-- Footer -->
+<div class="footer">
+    <p>&copy; 2025 El Carino. All rights reserved. | Follow us on Social Media</p>
+</div>
+<script>
+    const testimonials = [
+        { img: "{% static 'assets/images/myG.webp' %}", text: "El Carino made our wedding a dream come true. The team was professional and creative!", name: "Ajay & Akhila" },
+        { img: "{% static 'assets/images/oruthan.jpg' %}", text: "Our corporate event was flawless, thanks to El Carino's expertise.", name: "John Doe" },
+        { img: "{% static 'assets/images/aishwarya-lekshmi.png' %}", text: "Fantastic experience! They handled audio launch event of Maya Nadhi everything was perfectly done.", name: "Aiswarya Lakshmi" }
+    ];
+    let index = 0;
+    document.getElementById("next").onclick = () => {
+        index = (index + 1) % testimonials.length;
+        updateTestimonial();
+    };
+    document.getElementById("prev").onclick = () => {
+        index = (index - 1 + testimonials.length) % testimonials.length;
+        updateTestimonial();
+    };
+    function updateTestimonial() {
+        document.querySelector(".testimonial img").src = testimonials[index].img;
+        document.querySelector(".testimonial p").innerText = testimonials[index].text;
+        document.querySelector(".testimonial h3").innerText = testimonials[index].name;
+    }
+</script>
+{% endblock %}

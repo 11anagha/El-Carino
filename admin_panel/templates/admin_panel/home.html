@@ -1,0 +1,37 @@
+{% extends 'admin_panel/base.html' %}
+{% block content %}
+{% load static %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4 text-primary">Admin Dashboard</h1>
+
+    <h3 class="mb-3 text-secondary">📅 Bookings</h3>
+
+    {% if bookings %}
+        <div class="row">
+            {% for booking in bookings %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card shadow-lg border-0 mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark"><i class="fas fa-user"></i> From: {{ booking.name }}</h5>
+                            <h6 class="text-muted"><i class="fas fa-calendar-alt"></i> Event: {{ booking.event_name }}</h6>
+                            <p class="text-muted"><i class="fas fa-clock"></i> Date: {{ booking.booking_date }}</p>
+                            <p class="text-muted"><i class="fas fa-info-circle"></i> Desc: {{ booking.description }}</p>
+                            <p class="text-muted"><i class="fas fa-users"></i> People Count: {{ booking.count }}</p>
+                            <p class="fw-bold {% if booking.status == 'Confirmed' %} text-success {% else %} text-danger {% endif %}">
+                                <i class="fas fa-check-circle"></i> Status: {{ booking.status }}
+                            </p>
+                            <a href="{% url 'stream' %}" class="btn btn-primary w-100"><i class="fas fa-video"></i> Stream Now</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">No bookings available.</p>
+    {% endif %}
+</div>
+
+<!-- Add FontAwesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+{% endblock content %}
