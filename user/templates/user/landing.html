@@ -1,15 +1,43 @@
 {% extends 'user/base.html' %} 
 {% block content %} 
 {% load static %}
-<div class="video-container">
-    <video autoplay loop muted playsinline>
-        <source src="{% static 'assets/images/auth_vedio.mp4' %}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</div>
 <div class="hero">
     <h1>El Carino</h1>
     <p>Where Every Event Feels Exquisite</p>
+    <div class="slideshow">
+        <div class="slide active"><img src="{% static 'assets/images/pexels-wendywei-1190297.jpg' %}" alt="Event 1"></div>
+        <div class="slide"><img src="{% static 'assets/images/pexels-pavel-danilyuk-6405660.jpg' %}" alt="Event 2"></div>
+        <div class="slide"><img src="{% static 'assets/images/pexels-jonathanborba-9714788.jpg' %}" alt="Event 3"></div>
+        <div class="slide"><img src="{% static 'assets/images/pexels-evonics-1058276.jpg' %}" alt="Event 4"></div>
+        <div class="slide"><img src="{% static 'assets/images/pexels-pixabay-50675.jpg' %}" alt="Event 5"></div>
+    </div>
+    <div class="chatbot-btn" onclick="toggleChatbot()">
+        <i class="fa-solid fa-message" style="color: #d3d3d3;"></i>
+    </div>
+    <div class="chatbot" id="chatbot-container" style="display: none;">
+        <form method="POST">
+            {% csrf_token %}
+            <legend style="margin-left: -120px;">Chat Carino</legend>
+            <div class="chat-body mt-2">
+                <div class="greets">
+                    <span id="typewriter" style="color: white;"></span>
+                </div>
+                {% if query %}
+                    <div class="query">
+                    </div>
+                {% endif %}
+                {% if ai_response %}
+                <div class="ai_response">
+                    {{ai_response}}
+                </div>
+                {% endif %}
+            </div>
+            <input type="text" placeholder="Ask me" class="form-control" id="query-box" name="user_query">
+            <button type="submit" class="btn btn-primary" id="query-submit-btn">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
 </div>
 <!-- Testimonial Section -->
 <div class="testimonial-section">
@@ -28,13 +56,14 @@
     </div>
     <a href="#" class="view-all">View All</a>
 </div>
+
 <!-- Footer -->
 <div class="footer">
     <p>&copy; 2025 El Carino. All rights reserved. | Follow us on Social Media</p>
 </div>
 <script>
     const testimonials = [
-        { img: "{% static 'assets/images/myG.webp' %}", text: "El Carino made our wedding a dream come true. The team was professional and creative!", name: "Ajay & Akhila" },
+        { img: "{% static 'assets/images/wedding.jpg' %}", text: "El Carino made our wedding a dream come true. The team was professional and creative!", name: "Ajay & Akhila" },
         { img: "{% static 'assets/images/oruthan.jpg' %}", text: "Our corporate event was flawless, thanks to El Carino's expertise.", name: "John Doe" },
         { img: "{% static 'assets/images/aishwarya-lekshmi.png' %}", text: "Fantastic experience! They handled audio launch event of Maya Nadhi everything was perfectly done.", name: "Aiswarya Lakshmi" }
     ];
@@ -52,5 +81,104 @@
         document.querySelector(".testimonial p").innerText = testimonials[index].text;
         document.querySelector(".testimonial h3").innerText = testimonials[index].name;
     }
+
+
+// Toggle chatbot visibility
+function toggleChatbot() {
+    let chatbot = document.getElementById("chatbot-container");
+    chatbot.style.display = (chatbot.style.display === "none" || chatbot.style.display === "") ? "block" : "none";
+}
+
+// Typewriter Effect for AI Response
+function typeWriterEffect(text, element, speed = 50) {
+    let i = 0;
+    element.innerHTML = ""; // Clear previous text
+
+    function type() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    type();
+}
+
+// Example: Greet User with Typewriter Effect
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+        typeWriterEffect("Hello! How can I assist you today? 😊", document.getElementById("typewriter"));
+    }, 1000);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector(".chatbot form");
+    const chatBody = document.querySelector(".chat-body");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent page refresh
+
+        let userQuery = document.getElementById("query-box").value.trim();
+        if (!userQuery) return;
+
+        // Create User Query Element
+        let userQueryDiv = document.createElement("div");
+        userQueryDiv.classList.add("query");
+        userQueryDiv.innerText = userQuery;
+        chatBody.appendChild(userQueryDiv);
+
+        // Show "Thinking..." before AI response
+        let loadingDiv = document.createElement("div");
+        loadingDiv.classList.add("ai_response");
+        loadingDiv.innerText = "Thinking...";
+        chatBody.appendChild(loadingDiv);
+
+        // Scroll to Bottom
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        // Submit form using AJAX
+        let formData = new FormData(form);
+        fetch(form.action, {
+            method: "POST",
+            body: formData,
+        })
+        .then(response => response.text())
+        .then(html => {
+            let tempDiv = document.createElement("div");
+            tempDiv.innerHTML = html;
+            let newResponse = tempDiv.querySelector(".ai_response");
+
+            if (newResponse) {
+                loadingDiv.innerText = ""; // Clear "Thinking..."
+                typeWriterEffect(newResponse.innerText, loadingDiv);
+            } else {
+                loadingDiv.innerText = "Error getting response!";
+            }
+
+            // Scroll to Bottom
+            chatBody.scrollTop = chatBody.scrollHeight;
+        })
+        .catch(error => {
+            loadingDiv.innerText = "Error: " + error.message;
+        });
+
+        // Clear input field
+        document.getElementById("query-box").value = "";
+    });
+});
+let slides = document.querySelectorAll(".slide");
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle("active", i === index);
+            });
+        }
+
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }, 3000);
+
 </script>
 {% endblock %}

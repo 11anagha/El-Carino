@@ -1,2 +1,8 @@
 daphne
 channels
+langchain
+langchain-community
+langchain-core
+langchain-google-genai
+python-dotenv
+langchain_mistralai

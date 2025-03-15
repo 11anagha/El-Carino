@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -5,9 +7,48 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from .forms import BookingForm
 from .models import Booking
 from django.contrib.auth.decorators import login_required
+from langchain.prompts import PromptTemplate
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.output_parsers import StrOutputParser
+from langchain_mistralai import ChatMistralAI
+
+from dotenv import load_dotenv
+load_dotenv(override=True)
 
 def landing(request):
-    return render(request, 'user/landing.html')
+    context = {}
+    if request.method == "POST":
+        query = request.POST.get("user_query", "").strip()  # Fix here
+
+        if query:  # Only proceed if the query is not empty
+            # llm = ChatGoogleGenerativeAI(
+            #     model="gemini-1.5-pro",
+            #     temperature=0,
+            #     max_tokens=None,
+            #     timeout=None,
+            #     max_retries=2,
+            #     api_key=os.environ.get("GEMINI_API_KEY")
+            # )
+
+            llm = ChatMistralAI(
+                model="mistral-large-latest",
+                temperature=0,
+                max_retries=2,
+                api_key=os.environ.get("MISTRAL_API_KEY")
+            )
+
+            prompt_template = """You are a helpful AI assistant for El Carino, a company specializing in live streaming, media production, digital marketing, event management, and esports services. Your goal is to provide information, guide users through the website, and assist with inquiries.
+            Based on the query: {query}. Make the response shorter in one or two sentences.
+            """
+
+            prompt = PromptTemplate(input_variables=["query"], template=prompt_template)
+            chain = prompt | llm | StrOutputParser()
+            ai_response = chain.invoke({"query": query})
+
+            context["ai_response"] = ai_response
+
+    return render(request, 'user/landing.html', context)
+
 
 def register(request):
     if request.method == 'POST':
