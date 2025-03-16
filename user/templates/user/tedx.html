@@ -1,0 +1,55 @@
+{% extends 'user/base.html' %}
+{% block content %}
+{% load static %}
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background-color: #000000;
+    }
+
+    h2 {
+        margin: 20px 0;
+        font-size: 2em;
+    }
+
+    .gallery {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .gallery img {
+        width: 100%;
+        max-width: 1200px; /* Prevents images from being too large */
+        height: auto; /* Maintains aspect ratio */
+        margin-bottom: 20px; /* Space between images */
+        border-radius: 10px; /* Optional: adds rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: adds a shadow effect */
+    }
+
+    .back-btn {
+        display: inline-block;
+        margin: 20px;
+        padding: 10px 15px;
+        background: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .back-btn:hover {
+        background: #555;
+    }
+</style>
+<a href="portfolio.html" class="back-btn">Back to Portfolio</a>
+<h2>Tedx Gallery</h2>
+
+<div class="gallery">
+    <img src="{% static 'assets/images/photo1.png' %}">
+    <img src="{% static 'assets/images/photo2.png' %}">
+    <img src="{% static 'assets/images/photo3 tedx.png' %}">
+</div>
+{% endblock %}

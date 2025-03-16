@@ -1,0 +1,179 @@
+{% extends 'user/base.html' %}
+{% block content %}
+{% load static %}
+<style>
+.navbar {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 15px 20px;
+background: black;
+backdrop-filter: blur(5px);
+z-index: 1000;
+}
+.navbar .menu {
+display: flex;
+}
+.navbar a {
+color: white;
+text-decoration: none;
+padding: 10px 15px;
+transition: 0.3s;
+}
+.navbar a:hover {
+color: #ffd700;
+}
+.logo {
+height: 50px;
+width: auto;
+}
+.social-icons i {
+font-size: 2em;
+}
+
+.social-icons i {
+color: #4e4f51; /* Change this to any color you want */
+}
+
+
+body {
+display: flex;
+flex-direction: column;
+font-family: sans-serif;
+margin: 0;
+min-height: 100vh;
+color: white;
+}
+
+#bgVideo {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+z-index: -1;
+}
+
+main {
+display: flex;
+flex-grow: 1;
+padding-top: 80px;
+}
+
+.container {
+display: flex;
+width: 100%;
+}
+
+.contact-form, .contact-info, .join-us {
+flex: 1;
+margin: 10px;
+padding: 20px;
+background-color: rgba(255, 255, 255, 0.5);
+color: black;
+box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.job-listing {
+margin-top: 15px;
+padding: 10px;
+border: 1px solid #999;
+background: rgba(255, 255, 255, 0.7);
+color: black;
+cursor: pointer;
+transition: 0.2s;
+}
+
+.job-listing:hover {
+background: #4569a0;
+}
+
+.contact-form form {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.contact-form label, .contact-form input, .contact-form textarea, .contact-form button {
+width: 100%;
+}
+
+.contact-form input, .contact-form textarea {
+width: 100%;
+padding: 10px;
+font-size: 1.1em;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+
+.contact-form button {
+width: 100%;
+padding: 15px;
+font-size: 1.2em;
+background-color: #4569a0;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background 0.2s;
+}
+
+.contact-form button:hover {
+background-color: #4569a0;
+}
+</style>
+<video autoplay muted loop id="bgVideo">
+    <source src="{% static 'assets/images/contactbg.mp4' %}" type="video/mp4">
+</video>
+<main>
+    <div class="container">
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form action="/submit-contact" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="contact-info">
+            <h2>Company Information</h2>
+            <p><strong>Email:</strong> elcarino@gmail.com</p>
+            <p><strong>Phone:</strong> +91 9539630498</p>
+            <p><strong>Address:</strong> Kottukulam Hills, Pathamuttom P.O, Kottayam, Pin – 686532, Kerala</p>
+            <p>Feel free to reach out to us with any questions or inquiries.</p>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3934.985260158549!2d76.54878447507181!3d9.510009590571784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b062ed484f475a7%3A0xea66b5d0e55062ca!2sSaintgits%20College%20of%20Engineering%20(Autonomous)%2C%20Kottayam%2C%20Kerala!5e0!3m2!1sen!2sin!4v1742109418964!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="social-icons">
+                <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <div class="join-us">
+            <h2>Join Us!</h2>
+            <div class="job-listing">Event Coordinator<br><small>Plan and execute memorable events from start to finish.</small></div>
+            <div class="job-listing">Marketing Specialist<br><small>Craft strategies to promote our events and engage audiences.</small></div>
+            <div class="job-listing">Logistics Manager<br><small>Oversee event logistics, ensuring smooth operations.</small></div>
+            <div class="job-listing">Customer Support<br><small>Assist clients and attendees with inquiries and support.</small></div>
+            <div class="job-listing">Graphic Designer<br><small>Create stunning visuals to enhance our event experiences.</small></div>
+        </div>
+    </div>
+</main>
+{% endblock %}

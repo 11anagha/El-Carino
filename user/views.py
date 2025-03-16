@@ -129,3 +129,13 @@ def portfolio(request):
 
 def wedding(request):
     return render(request, 'user/wedding.html')
+
+
+def tedx(request):
+    return render(request, 'user/tedx.html')
+
+def mcd(request):
+    return render(request, 'user/mcd.html')
+
+def contactus(request):
+    return render(request, 'user/contactus.html')
