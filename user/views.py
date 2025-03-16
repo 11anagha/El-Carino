@@ -114,3 +114,18 @@ def plan_view(request):
         form = BookingForm()
 
     return render(request, 'user/plan.html', {'form': form})
+
+def about(request):
+    return render(request, 'user/about.html')
+
+def blog(request):
+    return render(request, 'user/blog.html')
+
+def blog_detail(request):
+    return render(request, 'user/blog_detail1.html')
+
+def portfolio(request):
+    return render(request, 'user/portfolio.html')
+
+def wedding(request):
+    return render(request, 'user/wedding.html')

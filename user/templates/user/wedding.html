@@ -1,0 +1,13 @@
+{% extends 'user/base.html' %}
+{% block content %}
+{% load static %}
+<a href="{% url 'portfolio' %}" class="back-btn" style="margin-top: 10%;">Back to Portfolio</a>
+    <h2>Wedding Collage Gallery</h2>
+    
+    <div class="gallery" style="text-align: center;">
+        <img src="{% static 'assets/images/wedding1.png' %}">
+        <img src="{% static 'assets/images/wedding2.png' %}">
+        <img src="{% static 'assets/images/wedding3.png' %}">
+        <img src="{% static 'assets/images/wedding4.png' %}">
+    </div>
+{% endblock %}

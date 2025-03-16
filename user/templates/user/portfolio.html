@@ -1,0 +1,72 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body{
+    background: url('/static/assets/images/blog.jpeg') no-repeat center center/cover;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    height: 100%;
+    margin: 0;
+}
+</style>
+
+<div class="portfolio-container">
+    <h2 style="margin-top: 8%;">Live Streamed Events</h2>
+    <div class="portfolio-grid">
+        <div class="portfolio-card">
+            <img src="{% static 'assets/images/live.jpg' %}" alt="Event 1">
+            <h3>Wedding</h3>
+            <p>"A beautiful and elegant wedding celebration crafted to perfection by our event management team! From stunning décor to seamless coordination, we ensured every moment was magical for our client. A day filled with love, joy, and unforgettable memories!".</p>
+            <a href="{% url 'wedding' %}" class="portfolio-btn">View Details</a>
+        </div>
+        <div class="portfolio-card">
+            <img src="{% static 'assets/images/nk.jpg' %}" alt="Event 2">
+            <h3>Nakshatra Fest</h3>
+            <p>"Nakshatra – The Grand Techno-Cultural Fest of Saintgits College! A vibrant fusion of technology and culture, Nakshatra brings together innovation, creativity, and entertainment. Featuring electrifying performances, thrilling technical competitions, and interactive workshops, the fest is a perfect blend of knowledge and fun!".</p>
+            <a href="#" class="portfolio-btn">View Details</a>
+        </div>
+    </div>
+    
+    <h2>Media Productions</h2>
+    <div class="portfolio-grid">
+        <div class="portfolio-card">
+            <img src="{% static 'assets/images/Christian-wedding.jpg' %}" alt="Media 1">
+            <h3>A Wedding We Covered</h3>
+            <p>"A graceful and heartfelt wedding meticulously planned by our event management team! For the fabulous actress Priyanka Chopra, from the sacred vows to the elegant décor, every detail was crafted with love and perfection. A truly divine and memorable experience!"</p>
+            <a href="#" class="portfolio-btn">View Details</a>
+        </div>
+        <div class="portfolio-card">
+            <img src="{% static 'assets/images/nykaa logo.webp' %}" alt="Media 2">
+            <h3>Nykaa Ad Campaign</h3>
+            <p>"A stunning and captivating Nykaa ad campaign, flawlessly executed by our event management team! From concept to production, we ensured a visually appealing and engaging commercial that perfectly showcased Nykaa's elegance and beauty."</p>
+            <a href="#" class="portfolio-btn">View Details</a>
+        </div>
+        <div class="portfolio-card">
+            <img src="{% static 'assets/images/mcdonalds.jpg' %}" alt="Media 3">
+            <h3>McDonald's Advertisement</h3>
+            <p>"A mouthwatering and vibrant McDonald's ad campaign, expertly crafted by our event management team! With dynamic visuals, appetizing close-ups, and a fun-filled narrative, this ad perfectly captured the essence of delicious moments."</p>
+            <a href="#" class="portfolio-btn">View Details</a>
+        </div>
+        <div class="portfolio-card">
+            <img src="{% static 'assets/images/tedx-logo.webp' %}" alt="Media 4">
+            <h3>TEDx Event</h3>
+            <p>"An inspiring and thought-provoking TEDx event, seamlessly organized by our event management team! From captivating speakers to impactful ideas, we curated a platform that sparked meaningful conversations and innovation."</p>
+            <a href="#" class="portfolio-btn">View Details</a>
+        </div>
+        <div class="portfolio-card">
+            <img src="{% static 'assets/images/uyire.jpeg' %}" alt="Media 5">
+            <h3>A Timeless Concert</h3>
+            <p>"A one-of-a-kind concert that brought melodious tones to our ears. We collaborated with none other than Shaan Rahman, whose larger-than-life persona made this event truly special. Looking forward to more partnerships soon!"</p>
+            <a href="#" class="portfolio-btn">View Details</a>
+        </div>
+        <div class="portfolio-card">
+            <img src="{% static 'assets/images/iifa.webp' %}" alt="Media 6">
+            <h3>IIFA Awards</h3>
+            <p>"Managing the media production of the IIFA Awards involved orchestrating a seamless live broadcast, capturing stunning visuals, and ensuring high-quality coverage of performances and celebrity interactions."</p>
+            <a href="#" class="portfolio-btn">View Details</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

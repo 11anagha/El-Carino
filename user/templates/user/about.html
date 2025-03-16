@@ -1,0 +1,123 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: url('/static/assets/images/about2.jpeg') no-repeat center center/cover;
+        color: #fff;
+        text-align: center;
+        position: relative;
+    }
+
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        z-index: 1;
+    }
+
+    .container {
+        width: 85%;
+        max-width: 1200px;
+        margin: auto;
+        padding: 80px 20px;
+        position: relative;
+        z-index: 2;
+    }
+</style>
+<div class="container">
+    <h1>El Carino</h1>
+    <p>
+        Welcome to El Carino, where creativity meets technology. We craft unforgettable experiences through cutting-edge media, digital marketing, live streaming, event management, and AI solutions.
+    </p>
+
+    <h2>Our Services</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <i class="fa-solid fa-computer fa-3x" style="color: #3498db;"></i>
+            <h3>Live Streaming</h3>
+            <p>Reach global audiences with flawless virtual event solutions.</p>
+        </div>
+        <div class="service-card">
+            <i class="fa-solid fa-camera fa-3x" style="color: #3498db;"></i>
+            <h3>Media Production</h3>
+            <p>High-quality photography, videography, and content creation.</p>
+        </div>
+        <div class="service-card">
+            <i class="fa-solid fa-chart-simple fa-3x" style="color: #3498db;"></i>
+            <h3>Digital Marketing</h3>
+            <p>Effective SEO and social media strategies for brand success.</p>
+        </div>
+        <div class="service-card">
+            <i class="fa-solid fa-calendar-days fa-3x" style="color: #3498db;"></i>
+            <h3>Event Management</h3>
+            <p>Seamless execution of physical and virtual events.</p>
+        </div>
+        <div class="service-card">
+            <i class="fa-solid fa-gamepad fa-3x" style="color: #3498db;"></i>
+            <h3>Esports</h3>
+            <p>Professional gaming event organization and management.</p>
+        </div>
+        <div class="service-card">
+            <i class="fa-solid fa-message fa-3x" style="color: #3498db;"></i>
+            <h3>AI Chatbot</h3>
+            <p>Advanced AI solutions for automated customer engagement.</p>
+        </div>
+    </div>
+
+    <h2>Our Vision</h2>
+    <p>"To redefine event management by blending creativity, technology, and seamless execution, ensuring every event leaves a lasting impact."</p>
+
+    <h2>Our Mission</h2>
+    <p>To deliver extraordinary event experiences by leveraging innovation, strategic planning, and a passion for excellence, while exceeding client expectations at every step</p>
+
+    <h2>Our Core Values</h2>
+    <ul class="core-values">
+        <li>Innovation</li>
+        <li>Quality</li>
+        <li>Integrity</li>
+        <li>Collaboration</li>
+        <li>Customer Satisfaction</li>
+    </ul>
+
+    <h2 class="team-section">Meet Our Team</h2>
+    <div class="team-grid">
+        <div class="team-member">
+            <img src="{% static 'assets/images/jane.jpg' %}" alt="John Doe">
+            <h3>John Doe</h3>
+            <p>CEO</p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'assets/images/jane2.jpg' %}" alt="Jane Smith">
+            <h3>Jane Smith</h3>
+            <p>Creative Director</p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'assets/images/alex.jpg' %}" alt="Alex Lee">
+            <h3>Alex Lee</h3>
+            <p>Technical Lead</p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'assets/images/emily.jpg' %}" alt="Emily White">
+            <h3>Emily White</h3>
+            <p>Marketing Manager</p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'assets/images/micheal.jpg' %}" alt="Michael Brown">
+            <h3>Michael Brown</h3>
+            <p>Operations Head</p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'assets/images/david.jpg' %}" alt="David Wilson">
+            <h3>David Wilson</h3>
+            <p>Project Manager</p>
+        </div>
+    </div>
+</div>
+<script src="https://kit.fontawesome.com/54f2b9ab61.js" crossorigin="anonymous"></script>
+{% endblock %}

@@ -1,11 +1,102 @@
 {% extends 'user/base.html' %}
 {% block content %}
 {% load static %}
+<style>
+    body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #000000;
+}
 
-<div class="services-wrapper">
-    <div class="book-now-container">
-        <a href="{% url 'plan' %}" class="book-now-btn">Book Now</a>
+.container {
+    background: linear-gradient(to right, #2c3e50, #0b04de);
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.numbers {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.number-item {
+    text-align: center;
+    margin: 20px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.number-item img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.number-value {
+    font-size: 2em;
+    font-weight: bold;
+}
+</style>
+</style>
+<script src="https://kit.fontawesome.com/54f2b9ab61.js" crossorigin="anonymous"></script>
+<div class="container">
+    <h2>Statistics of El carino</h2>
+    <div class="numbers">
+        <div class="number-item">
+            <i class="fa-solid fa-calendar-days" style="font-size: 50px;"></i> <div class="number-value" data-target="165">0+</div>
+            <div>events</div>
+        </div>
+        <div class="number-item">
+            <i class="fa-solid fa-person" style="font-size: 50px;"></i> <div class="number-value" data-target="50">0+</div>
+            <div>event planners</div>
+        </div>
+        <div class="number-item">
+            <i class="fa-solid fa-earth-asia" style="font-size: 50px;"></i> <div class="number-value" data-target="50">0+</div>
+            <div>countries</div>
+        </div>
+        
+        <div class="number-item">
+            <i class="fa-solid fa-people-group" style="font-size:50px;"></i> <div class="number-value" data-target="1000">0+</div>
+            <div>attendees</div>
+        </div>
     </div>
-</div>
 
+</div>
+<a class="btn btn-lg btn-primary" href="{% url 'plan' %}" style="position: absolute; margin-top: 400px;">Book Now</a>
+<script>
+    
+function animateNumbers() {
+    const numberValues = document.querySelectorAll('.number-value');
+
+    numberValues.forEach(numberValue => {
+        const target = parseInt(numberValue.dataset.target);
+        let current = 0;
+        const increment = Math.ceil(target / 200); // Adjust speed here
+
+        function updateNumber() {
+            current += increment;
+            if (current < target) {
+                numberValue.textContent = current.toLocaleString() + '+';
+                setTimeout(updateNumber, 10); // Adjust speed here
+            } else {
+                numberValue.textContent = target.toLocaleString() + '+';
+            }
+        }
+
+        updateNumber();
+    });
+}
+
+animateNumbers();
+
+</script>
 {% endblock %}

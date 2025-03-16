@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Event Strategy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .main-content {
+            flex: 2;
+            padding-right: 20px;
+        }
+        .sidebar {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        .author-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 20%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        h1, h2 {
+            color: #444;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <h4>Event Planning | Event Strategy</h4>
+            <h5>Aug 21 | Written by Rachella Thomas</h5>
+            <h1>Mastering Event Strategy</h1>
+            <p><strong>A guide to crafting a robust event strategy that ensures your event achieves its goals.</strong></p>
+            
+            <h2>1. Define Clear Objectives</h2>
+            <p>Every successful event starts with a well-defined purpose. Establish clear objectives by identifying what you aim to achieve, whether it's boosting brand awareness, fostering networking, securing sponsorships, or launching a product. Align your objectives with measurable key performance indicators (KPIs) to evaluate success effectively.</p>
+            
+            <h2>2. Know Your Audience</h2>
+            <p>Your event's impact largely depends on understanding your audience. Identify their interests, demographics, and expectations to tailor the experience. Conduct surveys, analyze social media trends, and gather feedback from previous events to ensure the content and format align with attendees’ needs.</p>
+            
+            <h2>3. Budgeting & Resource Allocation</h2>
+            <p>Budget planning is crucial for executing a successful event. List all expenses, including venue, catering, marketing, speaker fees, and contingency funds. Allocate resources efficiently by prioritizing essentials and seeking sponsorships or partnerships to maximize financial efficiency.</p>
+            
+            <h2>4. Marketing & Promotion</h2>
+            <p>An event is only as successful as its reach. Utilize multiple marketing channels, such as social media campaigns, email marketing, and influencer collaborations, to promote your event. Leverage engaging visuals, video teasers, and interactive posts to attract and retain audience interest.</p>
+            
+            <h2>5. Seamless Execution</h2>
+            <p>On event day, execution should be seamless. Develop a detailed event timeline covering registrations, speaker sessions, entertainment, and networking breaks. Assign responsibilities to team members and conduct a pre-event rehearsal to minimize potential issues.</p>
+            
+            <h2>6. Post-Event Evaluation</h2>
+            <p>After the event, gather feedback through surveys, attendee polls, and social media engagement analysis. Assess metrics like attendee satisfaction, engagement rates, and return on investment (ROI) to refine future event strategies.</p>
+            
+            <p>Want to learn more about event strategies? <a href="mailto:elcarino@example.com">Contact us</a> with your questions or insights!</p>
+        </div>
+        
+        <div class="sidebar">
+            <img src="{% static 'assets/images/writer.jpg' %}" alt="Rachella Thomas" class="author-img">
+            <h3>Rachella Thomas</h3>
+            <p>Rachella is an event strategist with over a decade of experience in corporate and social event planning. She specializes in creating high-impact events that drive engagement and brand growth.</p>
+            <h3>Start your next event with 90% of the work already done.</h3>
+            <p>Time is money, and you starting from from scratch for every new project wastes lots of it. Get started faster, customise with ease, and plan your event with templates that practically pay for themselves.</p>
+            <p>💡Pro Tip: Unfortunately, many new event planners struggle when planning their events because they don't realise they are lacking event strategy. In fact, most planners skip it altogether. It’s important to take time during your initial planning phase to think about how you can inject a strategic approach to your event planning.</p>
+            <h3>Why is Event Strategy Important?</h3>
+            <p>An event strategy keeps your event on track by defining the what, why, when, and how. It helps maintain focus on the big picture while ensuring every detail is accounted for.</p>
+            <p>Without a strong strategy, it’s easy to lose control of timing, budgets, or resources, leading to a chaotic and less successful event. This is particularly the case when your event is driven by a committee or various stakeholders with competing priorities!</p>
+        </div>
+    </div>
+</body>
+</html>

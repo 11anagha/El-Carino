@@ -1,9 +1,122 @@
 {% extends 'user/base.html' %}
 {% block content %}
 {% load static %}
+<style>
+    /* Booking Form Container */
+    .booking-form-container {
+        width: 90%;
+        max-width: 500px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 30px;
+        margin: 50px auto;
+        border-radius: 15px;
+        box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        text-align: center;
+        color: white;
+        margin-top: 100px;
+    }
+
+    /* Form Heading */
+    .booking-form-container h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #3513cf;
+        font-weight: bold;
+    }
+
+    /* Input Fields */
+    .booking-input-field {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Input Field Focus Effect */
+    .booking-input-field:focus {
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.4);
+    }
+
+    /* Label Styling */
+    label {
+        display: block;
+        font-size: 1.1rem;
+        text-align: left;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    /* Submit Button */
+    .booking-btn {
+        width: 100%;
+        padding: 12px;
+        background: #2112c1;
+        color: black;
+        border: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .booking-btn:hover {
+        background: white;
+        color: #ffcc00;
+        box-shadow: 0px 0px 10px rgba(255, 204, 0, 0.8);
+    }
+
+    /* Messages (Success/Error) */
+    .messages {
+        margin-bottom: 15px;
+    }
+
+    .alert {
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 1rem;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .alert-success {
+        background-color: rgba(0, 255, 0, 0.2);
+        color: #00ff00;
+    }
+
+    .alert-error {
+        background-color: rgba(255, 0, 0, 0.2);
+        color: #ff0000;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .booking-form-container {
+            width: 95%;
+        }
+    }
+</style>
+
 <div class="booking-form-container">
     <h2>Book Your Event</h2>
-
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
     <form method="POST">
         {% csrf_token %}
         <label for="booking_event_name">Event Name</label>

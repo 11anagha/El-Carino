@@ -1,0 +1,85 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body{
+    background: url('/static/assets/images/blog.jpeg') no-repeat center center/cover;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    height: 100%;
+    margin: 0;
+}
+</style>
+<div class="content">
+    <div class="header" style="margin-top: 5%; font-size: 3rem;">Blogs</div>
+    <div class="card-container">
+        <div class="card">
+            <a href="{% url 'blog_detail' %}" class="card-link">
+            <img src="{% static 'assets/images/box1.jpg' %}" alt="Card Image" class="card-image">
+            <div class="card-content">
+                <h2 class="card-title">Mastering Event Strategy.</h2>
+                <p class="card-description">A guide to crafting a robust event strategy that ensures your event achieves it's goals </p>
+            </div>
+            </a>
+        </div>
+        <div class="card">
+            <img src="{% static 'assets/images/box2.jpg' %}" alt="Card Image" class="card-image">
+            <div class="card-content">
+                <h2 class="card-title">Trends in Event Decor</h2>
+                <p class="card-description">Explore the latest and most impactful design elements transforming event spaces .</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'assets/images/box3.jpg' %}" alt="Card Image" class="card-image">
+            <div class="card-content">
+                <h2 class="card-title">Choosing the Perfect Venue</h2>
+                <p class="card-description">Discover why venue selection is paramount and how it shapes the entire event experience.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'assets/images/box4.jpg' %}" alt="Card Image" class="card-image">
+            <div class="card-content">
+                <h2 class="card-title">Tech Innovations Changing the Landscape of Event Planning</h2>
+                <p class="card-description">An exploration ofthe cutting edge technologies revolutionazing event creation and execution.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'assets/images/box5.jpeg' %}" alt="Card Image" class="card-image">
+            <div class="card-content">
+                <h2 class="card-title">The Art of Guest Management All the tips&tricks</h2>
+                <p class="card-description">A comprehensive guide to mastering guest interactions, from invitations to post event follow-ups,ensuring a seamless and postive experience.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'assets/images/box6.jpeg' %}" alt="Card Image" class="card-image">
+            <div class="card-content">
+                <h2 class="card-title">Sustainable Event Practises while Keeping up with the Trend. </h2>
+                <p class="card-description">How to create impactful,modern events that minimize environmental impact.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'assets/images/box 7.webp' %}" alt="Card Image" class="card-image">
+            <div class="card-content">
+                <h2 class="card-title">Catering and Food: Neccesity of Every Event</h2>
+                <p class="card-description">A look at how thoughtful food and beverage choices elevate the guest experience and contribut to event success</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'assets/images/box8.jpg' %}" alt="Card Image" class="card-image">
+            <div class="card-content">
+                <h2 class="card-title">Bringing the Magic through Lighting</h2>
+                <p class="card-description">Discover how strategic lighting design can transform any event space into an unforgettable experience.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="blog-submission">
+        <p class="submission-text">Want to share your own event planning insights and experiences?</p>
+        <p class="submission-text">Mail your blog submissions to 
+            <a href="mailto:elcarino@example.com" class="submission-link">elcarino@example.com</a> 
+            to be featured!
+        </p>
+    </div>    
+</div>
+{% endblock %}
