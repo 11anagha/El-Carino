@@ -1,102 +1,213 @@
 {% extends 'user/base.html' %}
 {% block content %}
 {% load static %}
+
 <style>
+    /* General Styling */
     body {
-    font-family: sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #000000;
-}
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        position: relative;
+        color: white;
+    }
 
-.container {
-    background: linear-gradient(to right, #2c3e50, #0b04de);
-    color: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-}
+    /* Background Video Styling */
+    .video-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+    }
 
-.numbers {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
-    flex-wrap: wrap;
-}
+    .video-container video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-.number-item {
-    text-align: center;
-    margin: 20px;
-    flex: 1;
-    min-width: 150px;
-}
+    /* Overlay */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: -1;
+    }
 
-.number-item img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 10px;
-}
+    /* Statistics Container */
+    .container {
+        background: linear-gradient(to right, #2c3e50, #0b04de);
+        color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 90%;
+        max-width: 800px;
+        margin-top: 80px;
+    }
 
-.number-value {
-    font-size: 2em;
-    font-weight: bold;
-}
+    .numbers {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 30px;
+        flex-wrap: nowrap;
+    }
+
+    .number-item {
+        text-align: center;
+        margin: 20px;
+        flex: 1;
+        min-width: 150px;
+    }
+
+    .number-item i {
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+
+    .number-value {
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    /* Book Now Button */
+    .btn {
+        text-decoration: none;
+        background: #ffcc00;
+        color: black;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 12px 24px;
+        border-radius: 8px;
+        margin-top: 20px;
+        display: inline-block;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn:hover {
+        background: white;
+        color: #ffcc00;
+        box-shadow: 0px 0px 10px rgba(255, 204, 0, 0.8);
+    }
+
+    /* FAQ Section */
+    .faq-container {
+        background: #fff;
+        color: black;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        max-width: 600px;
+        text-align: left;
+    }
+
+    .faq-question {
+        font-weight: bold;
+    }
 </style>
-</style>
-<script src="https://kit.fontawesome.com/54f2b9ab61.js" crossorigin="anonymous"></script>
+
+<!-- Background Video -->
+<div class="video-container">
+    <video autoplay loop muted>
+        <source src="{% static 'videos/background.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<!-- Overlay -->
+<div class="overlay"></div>
+
 <div class="container">
-    <h2>Statistics of El carino</h2>
+    <h2>Statistics of El Carino</h2>
     <div class="numbers">
         <div class="number-item">
-            <i class="fa-solid fa-calendar-days" style="font-size: 50px;"></i> <div class="number-value" data-target="165">0+</div>
+            <i class="fa-solid fa-calendar-days"></i>
+            <div class="number-value" data-target="165">0+</div>
             <div>events</div>
         </div>
         <div class="number-item">
-            <i class="fa-solid fa-person" style="font-size: 50px;"></i> <div class="number-value" data-target="50">0+</div>
+            <i class="fa-solid fa-person"></i>
+            <div class="number-value" data-target="50">0+</div>
             <div>event planners</div>
         </div>
         <div class="number-item">
-            <i class="fa-solid fa-earth-asia" style="font-size: 50px;"></i> <div class="number-value" data-target="50">0+</div>
+            <i class="fa-solid fa-earth-asia"></i>
+            <div class="number-value" data-target="50">0+</div>
             <div>countries</div>
         </div>
-        
         <div class="number-item">
-            <i class="fa-solid fa-people-group" style="font-size:50px;"></i> <div class="number-value" data-target="1000">0+</div>
+            <i class="fa-solid fa-people-group"></i>
+            <div class="number-value" data-target="1000">0+</div>
             <div>attendees</div>
         </div>
     </div>
-
 </div>
-<a class="btn btn-lg btn-primary" href="{% url 'plan' %}" style="position: absolute; margin-top: 400px;">Book Now</a>
+
+<a class="btn" href="{% url 'plan' %}">Book Now</a>
+
+<!-- FAQ Section -->
+<div class="faq-container">
+    <p class="faq-question">Q: What types of events do you organize?</p>
+    <p>A: We organize corporate events, weddings, conferences, and more.</p>
+</div>
+
+<div class="faq-container">
+    <p class="faq-question">Q: How can I book an event?</p>
+    <p>A: Click on the "Book Now" button and follow the instructions.</p>
+</div>
+
+<div class="faq-container">
+    <p class="faq-question">Q: Do you offer international event planning?</p>
+    <p>A: Yes, we organize events in over 50 countries.</p>
+</div>
+
+<div class="faq-container">
+    <p class="faq-question">Q: Can I customize my event plan?</p>
+    <p>A: Absolutely! We offer personalized event planning services.</p>
+</div>
+
 <script>
-    
-function animateNumbers() {
-    const numberValues = document.querySelectorAll('.number-value');
+    function animateNumbers() {
+        const numberValues = document.querySelectorAll('.number-value');
+        
+        numberValues.forEach(numberValue => {
+            const target = parseInt(numberValue.dataset.target);
+            let current = 0;
+            const increment = Math.ceil(target / 200);
 
-    numberValues.forEach(numberValue => {
-        const target = parseInt(numberValue.dataset.target);
-        let current = 0;
-        const increment = Math.ceil(target / 200); // Adjust speed here
-
-        function updateNumber() {
-            current += increment;
-            if (current < target) {
-                numberValue.textContent = current.toLocaleString() + '+';
-                setTimeout(updateNumber, 10); // Adjust speed here
-            } else {
-                numberValue.textContent = target.toLocaleString() + '+';
+            function updateNumber() {
+                current += increment;
+                if (current < target) {
+                    numberValue.textContent = current.toLocaleString() + '+';
+                    setTimeout(updateNumber, 10);
+                } else {
+                    numberValue.textContent = target.toLocaleString() + '+';
+                }
             }
-        }
 
-        updateNumber();
-    });
-}
-
-animateNumbers();
-
+            updateNumber();
+        });
+    }
+    
+    document.addEventListener("DOMContentLoaded", animateNumbers);
 </script>
+
 {% endblock %}

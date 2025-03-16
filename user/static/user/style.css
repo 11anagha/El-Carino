@@ -359,7 +359,7 @@ body {
     position: relative;
     max-width: 700px;
     margin: auto;
-    background: linear-gradient(to right, #6e4894f3, #11013b);;
+    background:linear-gradient(to right, #2c3e50, #0b04de);
     padding: 30px;
     border-radius: 10px;
 }
@@ -661,28 +661,6 @@ h2 {
     line-height: 1.5;
 }
 
-/* Blog Submission Section */
-.blog-submission {
-    text-align: center;
-    margin-top: 40px;
-    color: white;
-    font-size: 1.2rem;
-}
-
-.submission-text {
-    margin-bottom: 10px;
-}
-
-.submission-link {
-    color: #ffcc00;
-    font-weight: bold;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.submission-link:hover {
-    color: #ffffff;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -692,7 +670,7 @@ h2 {
     .card-container {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
-}
+} */
 /*numbers*/
 .numbers {
     display: flex;

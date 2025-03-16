@@ -1,8 +1,18 @@
 {% extends 'user/base.html' %}
 {% block content %}
 {% load static %}
-<a href="{% url 'portfolio' %}" class="back-btn" style="margin-top: 10%;">Back to Portfolio</a>
-    <h2>Wedding Collage Gallery</h2>
+<style>
+    .back-btn {
+        display: inline-block;
+        margin: 20px;
+        padding: 10px 15px;
+        background: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+</style>
+    <h2 style="margin-top: 6%; text-align: center;">Wedding Collage Gallery</h2>
     
     <div class="gallery" style="text-align: center;">
         <img src="{% static 'assets/images/wedding1.png' %}">
@@ -10,4 +20,5 @@
         <img src="{% static 'assets/images/wedding3.png' %}">
         <img src="{% static 'assets/images/wedding4.png' %}">
     </div>
+    <a href="{% url 'portfolio' %}" class="back-btn" style="margin-top: 2%;">Back to Portfolio</a>
 {% endblock %}
