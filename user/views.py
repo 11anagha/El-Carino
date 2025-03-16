@@ -148,3 +148,6 @@ def contactus(request):
         form = ContactForm()
     
     return render(request, 'user/contactus.html', {'form': form})
+
+def blogd(request):
+    return render(request, 'user/blogd.html')

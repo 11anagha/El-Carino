@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trends in Event Decor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .main-content {
+            flex: 2;
+            padding-right: 20px;
+        }
+        .sidebar {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        .author-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 20%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        h1, h2 {
+            color: #444;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <h4>Event Design | Event Decor</h4>
+            <h5>Mar 16 | Written by Rachella Thomas</h5>
+            <h1>Trrends in Event Decor</h1>
+            <p><strong>Explore the latest and most impactful design elements transforming event spaces.</strong></p>
+            
+            <h2>1. Sustainable Decor</h2>
+            <p>Eco-friendly decor is on the rise, with planners opting for reusable materials, potted plants, and local florals. Sustainability is no longer just a buzzword but a key consideration in event design.</p>
+            
+            <h2>2. Bold Color Palettes</h2>
+            <p>Gone are the days of muted tones. Vibrant hues and daring color combinations are taking center stage, adding energy and personality to event spaces.</p>
+            
+            <h2>3. Immersive Experiences</h2>
+            <p>From projection mapping to themed photo booths, creating immersive experiences through decor enhances guest engagement and makes events more memorable.</p>
+            
+            <h2>4. Lighting Innovations</h2>
+            <p>Lighting plays a crucial role in setting the mood. Dynamic lighting setups, such as LED installations and color-changing lights, add drama and atmosphere to events.</p>
+            
+            <h2>5. Personalization</h2>
+            <p>Custom signage, monogrammed items, and tailored decor elements create a personalized touch, making guests feel special and enhancing the overall ambiance.</p>
+            
+            <p>Want to incorporate these trends into your next event? <a href="mailto:elcarino@example.com">Contact us</a> for expert advice and design solutions!</p>
+        </div>
+        
+        <div class="sidebar">
+            <img src="{% static 'assets/images/micheal.jpg' %}" alt="Michael Brown" class="author-img">
+            <h3>Michael Brown</h3>
+            <p>Michael Brown is an event strategist with over a decade of experience in corporate and social event planning. She specializes in creating high-impact events that drive engagement and brand growth.</p>
+        </div>
+    </div>
+</body>
+</html>

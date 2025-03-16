@@ -2,34 +2,95 @@
 {% load static %}
 {% block content %}
 <style>
-    body{
-    background: url('/static/assets/images/blog.jpeg') no-repeat center center/cover;
-    height: 100vh;
-    width: 100vw;
-    background-size: cover;
-    height: 100%;
-    margin: 0;
-}
+    body {
+        background: url('/static/assets/images/blog.jpeg') no-repeat center center/cover;
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        margin: 0;
+    }
+
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        padding: 20px;
+        justify-items: center;
+        align-items: center;
+        max-width: 1200px; /* Restrict width */
+        margin: 70px auto 0 auto; /* Center horizontally */
+    }
+
+    .card {
+        width: 280px;
+        height: 220px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+        color: white;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover .card-content {
+        transform: translateY(0);
+    }
+
+    .card-title {
+        font-size: 1.3em;
+        margin-bottom: 5px;
+    }
+
+    .card-description {
+        font-size: 0.9em;
+    }
 </style>
+
 <div class="content">
-    <div class="header" style="margin-top: 5%; font-size: 3rem;">Blogs</div>
+    <div class="header" style="margin-top: 5%; font-size: 3rem; text-align: center;">Blogs</div>
     <div class="card-container">
-        <div class="card">
-            <a href="{% url 'blog_detail' %}" class="card-link">
-            <img src="{% static 'assets/images/box1.jpg' %}" alt="Card Image" class="card-image">
-            <div class="card-content">
-                <h2 class="card-title">Mastering Event Strategy.</h2>
-                <p class="card-description">A guide to crafting a robust event strategy that ensures your event achieves it's goals </p>
+        <!-- 8 Blog Cards -->
+        <a href="{% url 'blog_detail' %}" class="card-link" style="text-decoration: none; color: inherit;">
+            <div class="card">
+                <img src="{% static 'assets/images/box1.jpg' %}" alt="Card Image" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">Mastering Event Strategy</h2>
+                    <p class="card-description">A guide to crafting a robust event strategy that ensures your event achieves its goals.</p>
+                </div>
             </div>
-            </a>
-        </div>
-        <div class="card">
-            <img src="{% static 'assets/images/box2.jpg' %}" alt="Card Image" class="card-image">
-            <div class="card-content">
-                <h2 class="card-title">Trends in Event Decor</h2>
-                <p class="card-description">Explore the latest and most impactful design elements transforming event spaces .</p>
+        </a>
+        <a href="{% url 'blogd' %}" class="card-link" style="text-decoration: none; color: inherit;">
+            <div class="card">
+                <img src="{% static 'assets/images/box2.jpg' %}" alt="Card Image" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">Trends in Event Decor</h2>
+                    <p class="card-description">Explore the latest and most impactful design elements transforming event spaces.</p>
+                </div>
             </div>
-        </div>
+        </a>
         <div class="card">
             <img src="{% static 'assets/images/box3.jpg' %}" alt="Card Image" class="card-image">
             <div class="card-content">
@@ -40,46 +101,50 @@
         <div class="card">
             <img src="{% static 'assets/images/box4.jpg' %}" alt="Card Image" class="card-image">
             <div class="card-content">
-                <h2 class="card-title">Tech Innovations Changing the Landscape of Event Planning</h2>
-                <p class="card-description">An exploration ofthe cutting edge technologies revolutionazing event creation and execution.</p>
+                <h2 class="card-title">Tech Innovations in Event Planning</h2>
+                <p class="card-description">An exploration of the cutting-edge technologies revolutionizing event creation.</p>
             </div>
         </div>
         <div class="card">
             <img src="{% static 'assets/images/box5.jpeg' %}" alt="Card Image" class="card-image">
             <div class="card-content">
-                <h2 class="card-title">The Art of Guest Management All the tips&tricks</h2>
-                <p class="card-description">A comprehensive guide to mastering guest interactions, from invitations to post event follow-ups,ensuring a seamless and postive experience.</p>
+                <h2 class="card-title">The Art of Guest Management</h2>
+                <p class="card-description">A guide to mastering guest interactions from invitations to post-event follow-ups.</p>
             </div>
         </div>
         <div class="card">
             <img src="{% static 'assets/images/box6.jpeg' %}" alt="Card Image" class="card-image">
             <div class="card-content">
-                <h2 class="card-title">Sustainable Event Practises while Keeping up with the Trend. </h2>
-                <p class="card-description">How to create impactful,modern events that minimize environmental impact.</p>
+                <h2 class="card-title">Sustainable Event Practices</h2>
+                <p class="card-description">How to create impactful events while minimizing environmental impact.</p>
             </div>
         </div>
         <div class="card">
             <img src="{% static 'assets/images/box 7.webp' %}" alt="Card Image" class="card-image">
             <div class="card-content">
-                <h2 class="card-title">Catering and Food: Neccesity of Every Event</h2>
-                <p class="card-description">A look at how thoughtful food and beverage choices elevate the guest experience and contribut to event success</p>
+                <h2 class="card-title">Catering & Food at Events</h2>
+                <p class="card-description">How thoughtful food choices enhance guest experience and event success.</p>
             </div>
         </div>
         <div class="card">
             <img src="{% static 'assets/images/box8.jpg' %}" alt="Card Image" class="card-image">
             <div class="card-content">
-                <h2 class="card-title">Bringing the Magic through Lighting</h2>
-                <p class="card-description">Discover how strategic lighting design can transform any event space into an unforgettable experience.</p>
+                <h2 class="card-title">Bringing Magic Through Lighting</h2>
+                <p class="card-description">How strategic lighting design transforms event spaces.</p>
             </div>
         </div>
     </div>
-    </div>
-    <div class="blog-submission">
-        <p class="submission-text">Want to share your own event planning insights and experiences?</p>
-        <p class="submission-text">Mail your blog submissions to 
-            <a href="mailto:elcarino@example.com" class="submission-link">elcarino@example.com</a> 
+
+    <div class="blog-submission" style="text-align: center; margin-top: 40px; color: white; font-size: 1.2rem;">
+        <p class="submission-text">Want to share your event planning insights?</p>
+        <p class="submission-text">
+            Mail your blog submissions to 
+            <a href="mailto:elcarino@example.com" class="submission-link" style="color: #ffcc00; font-weight: bold; text-decoration: none; transition: color 0.3s ease;">
+                elcarino@example.com
+            </a> 
             to be featured!
         </p>
-    </div>    
+    </div>
 </div>
+
 {% endblock %}
