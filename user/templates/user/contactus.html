@@ -134,7 +134,8 @@ background-color: #4569a0;
     <div class="container">
         <div class="contact-form">
             <h2>Contact Us</h2>
-            <form action="/submit-contact" method="post">
+            <form action="{% url 'contactus' %}" method="post">
+                {% csrf_token %}
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
                 <label for="email">Email:</label>

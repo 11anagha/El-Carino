@@ -1,5 +1,5 @@
 import os
-
+from .forms import ContactForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -138,4 +138,13 @@ def mcd(request):
     return render(request, 'user/mcd.html')
 
 def contactus(request):
-    return render(request, 'user/contactus.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your message has been sent successfully!")
+            return redirect('contactus')  # Redirect to the contact page
+    else:
+        form = ContactForm()
+    
+    return render(request, 'user/contactus.html', {'form': form})

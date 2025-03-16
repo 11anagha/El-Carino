@@ -1,5 +1,11 @@
 from django import forms
 from .models import Booking
+from .models import ContactMessage
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactMessage
+        fields = ['name', 'email', 'phone', 'message']
 
 class BookingForm(forms.ModelForm):
     class Meta:
